@@ -1,0 +1,22 @@
+name: hwlog # you probably want to 'snapcraft register <name>'
+version: '0.1' # just for humans, typically '1.2+git' or '1.3.2'
+summary: hwlog is a utility to log hardware # 79 char long summary
+description: |
+  hwlog is a utility to log hardware.
+
+grade: devel # must be 'stable' to release into candidate/stable channels
+confinement: strict # use 'strict' once you have the right plugs and slots
+
+apps:
+  hwlog:
+    command: bin/hwlog
+    plugs: [hardware-observe, time-control]
+
+parts:
+  hwlog:
+    # See 'snapcraft plugins'
+    plugin: python
+    python-version: python3
+    source: .
+    stage-packages:
+      - util-linux #hwclock
